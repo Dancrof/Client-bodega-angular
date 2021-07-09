@@ -2,14 +2,11 @@
     flex: 1 1 auto;
 }
 
-
-/*list menu*/
-
 .mat-selection-list {
     position: fixed;
     width: 20%;
     transition: all 0.3s ease;
-    transform: translateX(-100%)
+    transform: translateX(-100%);
 }
 
 .mat-list-option {
@@ -17,11 +14,11 @@
 }
 
 .menuActive {
-    transform: translateX(0%)
+    transform: translateX(0);
 }
 
-@media (max-width:900px) {
+@media (max-width: 900px) {
     .mat-selection-list {
-        width: 100%;
+        width: 100;
     }
 }

@@ -1,0 +1,55 @@
+.loading {
+    max-width: 1200px;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+}
+
+.loading img {
+    width: 100%;
+}
+
+.example-card {
+    max-width: 20%;
+    position: absolute;
+    left: 40%;
+    top: 7%;
+    background-color: rgb(241, 240, 238);
+}
+
+.mat-card-image {
+    width: 70%;
+    position: relative;
+    left: 25%;
+}
+
+
+/*inputs*/
+
+.matInput {
+    width: 100%;
+}
+
+.mat-flat-button {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.example-container {
+    max-width: 100%;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .example-card {
+        max-width: 73%;
+        left: 9%;
+        top: 8%;
+    }
+    .loading {
+        left: 20%;
+    }
+}
