@@ -14,14 +14,14 @@
           <mat-icon>logout</mat-icon>
           <span>Logout</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/user/profile">
           <mat-icon>account_circle</mat-icon>
           <span>Profile</span>
         </button>
     </mat-menu>
 </mat-toolbar>
-<mat-selection-list [ngClass]="{'menuActive': mostrar == false}" #shoes [multiple]="false">
-    <mat-list-option [routerLink]="op.ruta" *ngFor="let op of typesOfShoes">
+<mat-selection-list [ngClass]="{'menuActive': mostrar == false}" #shoes [multiple]="false" color="primary">
+    <mat-list-option [routerLink]=" op.ruta " *ngFor="let op of typesOfShoes ">
         {{op.opcion}}
     </mat-list-option>
 </mat-selection-list>

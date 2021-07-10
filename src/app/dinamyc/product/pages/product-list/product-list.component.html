@@ -1,1 +1,37 @@
-<p>product-list works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <mat-toolbar>
+        <span>Products</span>
+    </mat-toolbar>
+    <mat-grid-list cols="1" rowHeight="2:0.3">
+        <div class="items">
+            <div class="item" *ngFor="let pro of product">
+                <div class="description-product">
+                    <ul>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.nombre}}</div>
+                        </li>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.peso}}</div>
+                        </li>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.precio}}</div>
+                        </li>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.cantidad}}</div>
+                        </li>
+                    </ul>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="product-img">
+                    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </mat-grid-list>
+</div>
+<app-footer></app-footer>

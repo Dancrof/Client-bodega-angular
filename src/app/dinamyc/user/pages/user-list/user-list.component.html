@@ -1,1 +1,33 @@
-<p>user-list works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <mat-toolbar>
+        <span>User</span>
+    </mat-toolbar>
+    <mat-grid-list cols="1" rowHeight="2:0.3">
+        <div class="items">
+            <div class="item" *ngFor="let pro of user">
+                <div class="description-user">
+                    <ul>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.nombre}}</div>
+                        </li>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.username}}</div>
+                        </li>
+                        <li>
+                            <mat-icon mat-list-icon>arrow_right</mat-icon>
+                            <div mat-line>{{pro.email}}</div>
+                        </li>
+                    </ul>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="product-img">
+                    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </mat-grid-list>
+</div>
+<app-footer></app-footer>

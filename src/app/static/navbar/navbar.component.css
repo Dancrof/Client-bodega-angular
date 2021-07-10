@@ -7,6 +7,7 @@
     width: 20%;
     transition: all 0.3s ease;
     transform: translateX(-100%);
+    z-index: 1;
 }
 
 .mat-list-option {
@@ -19,6 +20,6 @@
 
 @media (max-width: 900px) {
     .mat-selection-list {
-        width: 100;
+        width: 100%;
     }
 }
