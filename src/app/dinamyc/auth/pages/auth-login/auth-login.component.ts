@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { AuthService } from 'src/app/api/services';
+import { CreateAuthDto } from 'src/app/api/models';
+
 
 @Component({
   selector: 'app-auth-login',
@@ -10,14 +13,18 @@ import Swal from 'sweetalert2'
 })
 export class AuthLoginComponent implements OnInit {
 
-  loading = false;
-
-  constructor(private router: Router) { }
-
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]) 
-  hide = true;
+  loginGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+  });
   
+  loading = false;
+  
+  constructor(
+    private router: Router,
+    private loginService: AuthService
+  ) {}
+
   ngOnInit(): void {
   }
   //tiempo en que en loading aparece
@@ -30,15 +37,6 @@ export class AuthLoginComponent implements OnInit {
       this.router.navigate(['/product']);
     },1500);
   }
-  // mensage de alerta del input email
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
   //mensaje de validacion del usuario
   credentialInvalid(){
     Swal.fire({
@@ -50,8 +48,9 @@ export class AuthLoginComponent implements OnInit {
     });
   }
 
-  login(){
-    const email = this.email.value;
+  login(form){
+    console.log(form)
+    /*const email = this.email.value;
     const pass = this.password.value;
     
     if(email == 'admin@me.com' && pass == '12345678'){
@@ -60,6 +59,6 @@ export class AuthLoginComponent implements OnInit {
       this.credentialInvalid()
       this.email.reset()
       this.password.reset()
-    }
+    }*/
   }
 }

@@ -4,28 +4,18 @@
 
 <mat-card class="example-card" *ngIf="!loading">
     <img mat-card-image src="../../../../../assets/img/login/imgLogin.png" alt="Login">
+
     <mat-card-content class="example-container">
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-
+        <form [formGroup]="loginGroup" (ngSubmit)="login(loginGroup.value)">
+            <!-- USERNAME INPUT -->
+            <label for="email">Email</label>
+            <input type="email" placeholder="Enter Email" formGroupName="email" required>
+            <!-- PASSWORD INPUT -->
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" formGroupName="password" required>
+            <mat-card-actions>
+                <button mat-flat-button color="primary" type="submit" [disabled]="loginGroup.invalid">Access</button>
+            </mat-card-actions>
+        </form>
     </mat-card-content>
-
-    <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="login()" [disabled]="email.invalid || password.invalid">Access</button>
-        <p>No tienes una cuenta
-            <a routerLink="/auth/singUp">Registrate</a>
-        </p>
-    </mat-card-actions>
 </mat-card>
