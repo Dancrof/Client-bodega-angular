@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CreateAuthDto, Response} from '../../models'
+import {CreateAuthDto} from '../../models'
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {conectBackendUrl} from '../../constant';
 import { Observable } from 'rxjs';
@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  singIn(form: CreateAuthDto):Observable<Response>{
+  singIn(form: CreateAuthDto):Observable<CreateAuthDto>{
     const path = this.url + "/auth/singIn";
-    return this.http.post<Response>(path, form)
+    return this.http.post<CreateAuthDto>(path, form);
   }
 
 

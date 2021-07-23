@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 import { AuthService } from 'src/app/api/services';
@@ -13,20 +13,28 @@ import { CreateAuthDto } from 'src/app/api/models';
 })
 export class AuthLoginComponent implements OnInit {
 
-  loginGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
-  });
+  //--inputs--------
+  group: FormGroup;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+  
   
   loading = false;
   
   constructor(
     private router: Router,
-    private loginService: AuthService
-  ) {}
+    private loginService: AuthService,
+    private builder: FormBuilder
+  ) {
+    this.group = builder.group({
+      e: this.email,
+      p: this.password
+    });
+  }
 
   ngOnInit(): void {
   }
+  
   //tiempo en que en loading aparece
   fakeLoading(){
     this.loading = true;
@@ -49,11 +57,9 @@ export class AuthLoginComponent implements OnInit {
   }
 
   login(form){
-    console.log(form)
-    /*const email = this.email.value;
-    const pass = this.password.value;
+    console.log(form);
     
-    if(email == 'admin@me.com' && pass == '12345678'){
+    /*if(email == 'admin@me.com' && pass == '12345678'){
       this.fakeLoading(); 
     } else {
       this.credentialInvalid()

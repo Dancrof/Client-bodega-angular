@@ -6,16 +6,34 @@
     <img mat-card-image src="../../../../../assets/img/login/imgLogin.png" alt="Login">
 
     <mat-card-content class="example-container">
-        <form [formGroup]="loginGroup" (ngSubmit)="login(loginGroup.value)">
+
+        <form [formGroup]="group">
             <!-- USERNAME INPUT -->
-            <label for="email">Email</label>
-            <input type="email" placeholder="Enter Email" formGroupName="email" required>
+            <mat-form-field appearance="standard">
+                <mat-label>Enter your email</mat-label>
+                <input type="email" matInput [formControl]="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
             <!-- PASSWORD INPUT -->
-            <label for="password">Password</label>
-            <input type="password" placeholder="Enter Password" formGroupName="password" required>
+            <mat-form-field appearance="standard">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
             <mat-card-actions>
-                <button mat-flat-button color="primary" type="submit" [disabled]="loginGroup.invalid">Access</button>
+                <button mat-flat-button color="primary" (click)="login(group.value)" [disabled]="email.invalid || password.invalid">Access</button>
             </mat-card-actions>
+
         </form>
+
     </mat-card-content>
 </mat-card>
